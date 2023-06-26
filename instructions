@@ -19,3 +19,14 @@ icacls Home\Departments\IT /grant Everyone:RWX
 icacls Home\Departments\HR /grant Everyone:RWX
 icacls Home\Departments\Operations /grant Everyone:RWX
 icacls Home\Departments\Accounting /grant Everyone:RWX
+
+
+net user AmyIT /add
+net user PamOps /add
+net user MandyAcct /add
+net user TimHR /add
+
+icacls Home\Departments\IT /grant AmyIT:F
+icacls Home\Departments\HR /grant PamOps:F
+icacls Home\Departments\Operations /grant MandyAcct:F
+icacls Home\Departments\Accounting /grant TimHR:F
