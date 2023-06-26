@@ -1,3 +1,6 @@
+powershell.exe -ExecutionPolicy RemoteSigned create_directories.ps1
+
+
 mkdir Home
 mkdir Home\Departments
 mkdir Home\Departments\HR
