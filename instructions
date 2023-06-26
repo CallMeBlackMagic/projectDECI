@@ -1,0 +1,21 @@
+mkdir Home
+mkdir Home\Departments
+mkdir Home\Departments\HR
+mkdir Home\Departments\Accounting
+mkdir Home\Departments\Public
+mkdir Home\Departments\IT
+mkdir Home\Departments\Operations
+
+cd Home\Departments
+
+icacls . /grant IT:F /grant HR:F /grant Operations:F /grant Accounting:F
+
+icacls IT /grant AmyIT:F
+icacls HR /grant PamOps:F
+icacls Operations /grant MandyAcct:F
+icacls Accounting /grant TimHR:F
+
+icacls Home\Departments\IT /grant Everyone:RWX
+icacls Home\Departments\HR /grant Everyone:RWX
+icacls Home\Departments\Operations /grant Everyone:RWX
+icacls Home\Departments\Accounting /grant Everyone:RWX
