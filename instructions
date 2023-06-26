@@ -59,3 +59,27 @@ foreach ($department in $departmentPermissions.Keys) {
     Set-Acl -Path $departmentFolderPath -AclObject $acl
 }
 
+$folderPath = "C:\Home\Departments"
+$departmentPermissions = @{
+    "IT" = "Domain\AmyIT"
+    "HR" = "Domain\TimHR"
+    "Accounting" = "Domain\MandyAcct"
+    "Operations" = "Domain\PamOps"
+}
+$permissions = "Read,Write,Execute"
+$inheritanceFlags = "ContainerInherit,ObjectInherit"
+$propagationFlags = "None"
+$accessControlType = "Allow"
+
+foreach ($department in $departmentPermissions.Keys) {
+    $departmentFolderPath = Join-Path -Path $folderPath -ChildPath $department
+    $user = $departmentPermissions[$department]
+
+    $acl = Get-Acl -Path $departmentFolderPath
+
+    $permission = $user, $permissions, $inheritanceFlags, $propagationFlags, $accessControlType
+    $accessRule = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule -ArgumentList $permission
+    $acl.AddAccessRule($accessRule)
+
+    Set-Acl -Path $departmentFolderPath -AclObject $acl
+}
